@@ -3,7 +3,7 @@
 
 Instructions: https://www.nginx.com/blog/compiling-dynamic-modules-nginx-plus/
 
-Used nginx version: 1.25.5
+Used nginx version: 1.29.0
 (dynamic modules need to be compiled against the exact version)
 
  ```bash 
