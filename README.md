@@ -28,6 +28,12 @@ sudo apt install libpcre2-dev
  make install
 ```
 
+Include module in Application
+
+1. create a modules directory in the root of your projects directory.
+2. copy the compiled module from /opt/nginx to ./modules directory.
+
+
 ```
-cf push testapp -b https://github.com/cloudfoundry/nginx-buildpack#v1.2.5
+cf push nginx-test -b nginx-buildpac 
 ```
