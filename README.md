@@ -6,17 +6,25 @@ Instructions: https://www.nginx.com/blog/compiling-dynamic-modules-nginx-plus/
 Used nginx version: 1.29.0
 (dynamic modules need to be compiled against the exact version)
 
+Download and extract NGINX source.
+
  ```bash 
  wget 'http://nginx.org/download/nginx-1.29.0.tar.gz'
  tar -xzvf nginx-1.29.0.tar.gz
  cd nginx-1.29.0/
  ```
 
+Download and extract headers-more source.
+
 ```bash
 wget https://github.com/openresty/headers-more-nginx-module/archive/refs/tags/v0.39.zip
 unzip v0.39.zip
 cd nginx-1.29.0
+```
 
+Compile module. (Compiled on Ubuntu so that the file is compatible with x86 architecture)
+
+```
 # Install pcre2 if required
 sudo apt install libpcre2-dev
 
@@ -35,5 +43,5 @@ Include module in Application
 3. From the root of your project directory, do a cf push to deploy app.
 
 ```
-cf push nginx-test -b nginx-buildpac 
+cf push nginx-test -b nginx-buildpack
 ```
