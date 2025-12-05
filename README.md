@@ -30,9 +30,9 @@ sudo apt install libpcre2-dev
 
 Include module in Application
 
-1. create a modules directory in the root of your projects directory.
-2. copy the compiled module from /opt/nginx to ./modules directory.
-
+1. Create a modules directory in the root of your projects directory.
+2. Copy the compiled module from /opt/nginx to ./modules directory.
+3. From the root of your project directory, do a cf push to deploy app.
 
 ```
 cf push nginx-test -b nginx-buildpac 
