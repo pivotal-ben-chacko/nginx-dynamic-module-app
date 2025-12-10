@@ -11,7 +11,6 @@ Download and extract NGINX source.
  ```bash 
  wget 'http://nginx.org/download/nginx-1.29.0.tar.gz'
  tar -xzvf nginx-1.29.0.tar.gz
- cd nginx-1.29.0/
  ```
 
 Download and extract headers-more module.
@@ -19,7 +18,6 @@ Download and extract headers-more module.
 ```bash
 wget https://github.com/openresty/headers-more-nginx-module/archive/refs/tags/v0.39.zip
 unzip v0.39.zip
-cd nginx-1.29.0
 ```
 
 Compile module. (Compiled on Ubuntu so that the file is compatible with x86 architecture)
@@ -28,9 +26,10 @@ Compile module. (Compiled on Ubuntu so that the file is compatible with x86 arch
 # Install pcre2 if required
 sudo apt install libpcre2-dev
 
+cd nginx-1.29.0
 # Here we assume you would install you nginx under /opt/nginx/.
  ./configure --prefix=/opt/nginx \
-     --add-dynamic-module=/<PATH-TO-HEADERS-MORE-MODULE>/headers-more-nginx-module
+     --add-dynamic-module=/<PATH-TO-HEADERS-MORE-MODULE>/headers-more-nginx-module-0.39
 
  make
  make install
