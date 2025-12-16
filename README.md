@@ -44,3 +44,33 @@ Include module in Application
 ```
 cf push nginx-test -b nginx-buildpack
 ```
+
+## GitHub Actions CI/CD
+
+This repository includes an automated build and deployment pipeline using GitHub Actions and Paketo Buildpacks.
+
+### Workflow
+
+The workflow (`.github/workflows/build-and-push.yml`) automatically:
+- Triggers on pushes to the `main` branch
+- Uses Paketo Buildpacks to build a Docker image
+- Publishes the image to Docker Hub
+
+### Setup Requirements
+
+To use the GitHub Actions workflow, configure the following secrets in your repository settings:
+
+- `DOCKERHUB_USERNAME`: Your Docker Hub username
+- `DOCKERHUB_TOKEN`: Your Docker Hub access token
+
+### Build Command
+
+The workflow uses the `pack` CLI with Paketo buildpacks:
+
+```bash
+pack build index.docker.io/<username>/vmware:latest \
+  --builder paketobuildpacks/builder:base \
+  --publish
+```
+
+The Paketo buildpack automatically detects the NGINX configuration and creates a containerized application.
