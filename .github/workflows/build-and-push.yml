@@ -1,0 +1,28 @@
+name: Build and push Docker image with Paketo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-with-paketo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Install pack CLI
+        uses: buildpacks/github-actions/setup-pack@v5
+        
+      - name: Build and push application image
+        run: |
+          pack build index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/vmware:latest \
+            --builder paketobuildpacks/builder:base \
+            --publish
